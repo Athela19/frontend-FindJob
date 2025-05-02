@@ -1,0 +1,445 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+  --primary: blue;
+  --bg: white;
+  --font: black;
+  --tmbl: white;
+  --input: #acacac;
+  --sekunder:rgb(115, 206, 251);
+  --tertiary :orange;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+  border: none;
+  text-decoration: none;
+  scroll-behavior: smooth;
+}
+/* tes */
+body {
+  overflow-x: hidden;
+  width: 100vw;
+  font-family: "Inter", sans-serif;
+  background-color: var(--bg);
+  z-index: -999;
+}
+
+.hero-bg{
+  background-color: var(--primary);
+}
+.hero-edit {
+  height: 100vh;
+  padding: 8rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+  background-color: var(--bg);
+  border-bottom-left-radius: 30rem;
+  z-index: 100;
+}
+
+.hero-left {
+  flex: 6;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: left;
+  transition: transform 1s ease-out; 
+}
+
+.hero-right {
+  flex: 4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.hero-left h1 {
+  font-size: 3.7rem;
+  margin: 0;
+  font-family: "Inter", sans-serif;
+}
+
+.hero-left span {
+  color: var(--primary); /* Warna highlight */
+}
+
+.hero-left p {
+  margin: 1rem 0;
+  font-size: 1.2rem;
+  font-family: "Inter", sans-serif;
+}
+
+.hero-circle {
+  position: absolute;
+  width: 325px;
+  height: 325px;
+  background: linear-gradient(10deg,var(--primary),var(--sekunder));
+  border-radius: 0 50% 50% 50%;
+  transition: transform 1s ease-out;
+  z-index: -11;
+}
+
+.circle-hero{
+  position: absolute;
+  border-radius: 50%;
+  transform-origin: center; /* Animasi scale berpusat di tengah */
+  transition: transform 1s ease-out;
+  
+}
+.circle-hero:nth-child(1) {
+  z-index: -11; /* Pastikan di belakang konten */
+  top: 60%;
+  left: 85%;
+  width: 9rem;
+  height: 9rem;
+  background: var(--tertiary);
+}
+.circle-hero:nth-child(2) {
+  top: 57%;
+  left: 58%;
+  width: 5rem;
+  height: 5rem;
+  background: var(--tertiary);
+  z-index: -1; /* Pastikan di belakang konten */
+}
+.circle-hero:nth-child(3) {
+  top: 18%;
+  left: 79%;
+  width: 12rem;
+  height: 12rem;
+  background: transparent;
+  border: 4px solid var(--tertiary);
+  z-index: -1; /* Pastikan di belakang konten */
+}
+
+.hero-image {
+  max-width: 85%;
+  height: auto;
+  position: relative;
+  z-index: 1;
+}
+
+/*section about*/
+.about-edit {
+  font-family: "Inter", sans-serif;
+  background: linear-gradient(165deg,var(--primary),var(--sekunder));
+  overflow: hidden;
+  min-height: 100vh;
+  padding: 10rem 7rem;
+}
+
+.fitur{
+  font-family: "Inter", sans-serif;
+  display: flex;
+  margin-top: 3rem;
+  align-items: center;
+}
+
+.card-fitur{
+  text-align: center;
+  background-color: var(--bg);
+  border-radius:2rem ;
+  margin: 1.3rem 3rem;
+  padding: 2rem;
+  color: rgb(44, 150, 255);
+  transition: all 0.3s ease;
+}
+.card-fitur:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 0 10px 3px lightgrey;
+  cursor: default;
+}
+.card-fitur img{
+  text-align: center;
+  background-color: var(--bg);
+  border-radius:2rem ;
+  margin: 3rem;
+}
+.card-fitur p {
+  color: #333;
+}
+
+.about-circle {
+  position: absolute;
+  width: 16.5rem;
+  height: 1rem;
+  background: black;
+  border-radius: 50%;
+  opacity: 0.2;
+  animation: fadeShadow 2s ease-in-out infinite;
+  transform-origin: center;
+  margin-left:12.5rem;
+  transform: translateX(-50%); /* Sesuaikan posisi pusat */
+}
+
+@keyframes fadeShadow {
+  0% {
+    opacity: 0.5;
+    width: 21rem;
+  }
+  50% {
+ 
+    opacity: 0.2;
+    width: 16.5rem;
+  }
+  100% {
+    opacity: 0.5;
+    width: 21rem;
+  }
+}
+.about-edit .row-edit {
+  display: flex;
+  align-items: center;
+}
+
+.about-edit .row-edit .about-img-edit {
+  flex: 1 1 20rem;
+}
+
+.about-edit .row-edit .about-img-edit img {
+  width: 25rem;
+  height: auto;
+}
+
+.about-edit .row-edit .content-edit {
+  flex: 1 1 35rem;
+  padding: 0 1rem;
+}
+
+.about-edit .row-edit .content-edit p {
+  margin-bottom: 0.8rem;
+  font-size: 1.4rem;
+  font-weight: 300;
+  line-height: 1.6rem;
+  text-align: center;
+}
+
+/* Container */
+.container-creator {
+  max-width: 85rem;
+  margin: 0 auto;
+  padding-top: 7rem;
+  min-height: 100vh;
+}
+
+/* Judul */
+.title-creator {
+  text-align: center;
+  margin-bottom: 4rem;
+  font-size: 2.7rem;
+}
+
+/* Konten */
+.content-creator {
+  display: flex;
+  gap: 3rem;
+}
+.bg-content-creator{
+  display: flex;
+  flex-direction: column;
+}
+/* Animasi muncul dari bawah */
+.title-creator,
+.text-creator,
+.photos-creator {
+  opacity: 0;
+  transform: translateY(15rem);
+  transition: opacity 0.6s ease-out, transform 1s ease-out;
+}
+
+.title-creator.visible,
+.text-creator.visible,
+.photos-creator.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* Teks di sebelah kiri */
+.text-creator {
+  flex: 1;
+  padding-right: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.text-creator p {
+  color: black;
+  font-size: 1.4rem;  
+}
+
+/* Container foto */
+.photos-creator {
+  display: flex;
+  gap: 1rem;
+}
+
+/* Foto */
+.photo-creator {
+  width: 10rem; /* Lebar saat tidak aktif */
+  height: 22rem; /* Tinggi saat tidak aktif */
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  transition: width 0.3s ease;
+  border-radius: 1rem;
+}
+
+/* Gambar di dalam foto */
+.image-creator {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Teks caption */
+.caption-creator {
+  position: absolute;
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
+  color: white;
+  right: -90%; /* Posisikan di sebelah kanan */
+  top: 50%;
+  transform: translate(50%, -50%) rotate(0deg); /* Diputar 90 derajat */
+  transform-origin: right top; /* Atur titik pusat rotasi */
+  white-space: normal; /* Teks akan turun ke baris baru */
+  word-wrap: break-word; /* Memastikan kata-kata panjang dipotong */
+  overflow-wrap: break-word; /* Alternatif modern untuk word-wrap */
+  max-width: 100%; /* Batasi lebar maksimum */
+  padding-right: 1rem; /* Padding di sebelah kanan */
+  transition: all 0.3s ease;
+  z-index: 99;
+}
+.caption-creator p {
+  display: none;
+}
+  
+/* Foto aktif */
+.photo-creator.active-creator .caption-creator {
+  right: 50%; /* Posisikan di tengah */
+  transform: translate(50%, -50%) rotate(0deg); /* Tidak diputar */
+  padding-right: 0; /* Hilangkan padding saat aktif */
+  max-width: 80%; /* Sesuaikan lebar maksimum saat aktif */
+}
+
+/* Foto aktif */
+.photo-creator.active-creator {
+  width: 22rem; /* Lebar saat aktif */
+  height: 22rem; /* Tinggi saat aktif */
+}
+.photo-creator.active-creator img {
+  filter: blur(3.3px);
+}
+.photo-creator.active-creator p {
+  filter: none;
+  display: block;
+  color: white;
+  word-wrap: break-word; /* Agar teks panjang turun */
+  overflow-wrap: break-word; /* Alternatif modern */
+  white-space: normal; /* Pastikan teks bisa turun ke bawah */
+  max-width: 100%; /* Pastikan teks tidak melebihi lebar container */
+}
+
+
+.komentar-container {
+  max-width: 90rem;
+  margin: 0 auto;
+  padding: 1rem;
+  font-family: "Inter", sans-serif;
+  text-align: center;
+  overflow: hidden;
+  border-radius: 1rem;
+}
+
+.komentar-title {
+  font-size: 2.6rem;
+  margin-bottom: 3rem;
+}
+
+.loading-text,
+.no-komentar {
+  color: var(--input);
+}
+
+/* Area carousel */
+.komentar-carousel {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.carousel-track {
+  display: flex;
+  width: max-content;
+  animation: scrollCarousel 15s linear infinite;
+}
+
+@keyframes scrollCarousel {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Setiap card dalam carousel */
+.komentar-card {
+  width: 20rem;
+  height: 20rem;
+  background-color: var(--bg);
+  padding: 15px;
+  border-radius: 8px;
+  margin: 0 10px;
+  flex-shrink: 0;
+  overflow: hidden;
+  border: 1px solid lightgrey;
+}
+
+/* Header komentar */
+.komentar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid lightgrey; ;
+}
+
+.komentar-author {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--font);
+}
+
+.komentar-author img {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+}
+
+.komentar-date {
+  font-size: 14px;
+  color: var(--font);
+}
+
+/* Teks komentar */
+.komentar-text {
+  font-size: 1rem;
+  margin: 1rem;
+  color: var(--font);
+  word-wrap: break-word; /* Agar kata panjang tidak keluar dari card */
+  overflow: auto; /* Scroll jika terlalu panjang */
+  max-height: 150px; /* Batasi tinggi agar tidak terlalu panjang */
+  white-space: pre-line; 
+}

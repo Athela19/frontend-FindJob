@@ -1,0 +1,65 @@
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #f0f0f0;
+  font-family: Arial, sans-serif;
+}
+
+.loading-icon {
+  position: relative;
+  width: 60px;
+  height: 60px;
+}
+
+.tool-icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 40px;
+  opacity: 0;
+  animation: changeTool 3s infinite;
+}
+
+.tool-icon:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.tool-icon:nth-child(2) {
+  animation-delay: 1s;
+}
+
+.tool-icon:nth-child(3) {
+  animation-delay: 2s;
+}
+
+@keyframes changeTool {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  10% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  30% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  40% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+}
+
+p {
+  margin-top: 20px;
+  font-size: 18px;
+  color: #333;
+}
