@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import user from "../../img/user.png"
 
-function Rating() {
+function Ulasan() {
   const [comments, setComments] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [loading, setLoading] = useState(true);
@@ -83,4 +83,4 @@ function Rating() {
   );
 }
 
-export default Rating;
+export default Ulasan;

@@ -8,15 +8,40 @@ import {
   faChevronLeft,
   faChevronRight,
   faSignOutAlt,
+  faChevronDown,
 } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import "../css/dashboard.css";
 import JobList from "./maincontent/JobList";
 import JobUser from "./maincontent/JobUser";
 import Profil from "./maincontent/Profil";
+import Ulasan from "./maincontent/Ulasan";
 import { toast } from "react-toastify";
 import user from "../img/user.png";
 import Navbar from "./subcomponent/Navbar";
+
+// List of Indonesian cities
+const cities = [
+  "Jakarta",
+  "Surabaya",
+  "Bandung",
+  "Medan",
+  "Semarang",
+  "Makassar",
+  "Palembang",
+  "Depok",
+  "Tangerang",
+  "Bekasi",
+  "Bogor",
+  "Malang",
+  "Yogyakarta",
+  "Denpasar",
+  "Balikpapan",
+  "Pekanbaru",
+  "Padang",
+  "Bandar Lampung",
+  "Banjarmasin",
+];
 
 function Dashboard() {
   const [name, setName] = useState("");
@@ -28,17 +53,21 @@ function Dashboard() {
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [selectedJob, setSelectedJob] = useState(null);
   const [showJobForm, setShowJobForm] = useState(false);
+  const [showCityDropdown, setShowCityDropdown] = useState(false);
   const [newJob, setNewJob] = useState({
     pekerjaan: "",
     deskripsi: "",
     alamat: "",
     harga: "",
     noWa: "",
+    kota: "",
   });
   const navigate = useNavigate();
+
   useEffect(() => {
     refreshToken();
   }, []);
+
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -77,8 +106,9 @@ function Dashboard() {
       console.error("Terjadi kesalahan:", error);
     }
   };
+
   const fetchProfile = async () => {
-    if (!userId) return; // Cegah pemanggilan jika userId belum ada
+    if (!userId) return;
     try {
       const response = await axios.get(
         `http://localhost:5000/profile/${userId}`,
@@ -99,6 +129,11 @@ function Dashboard() {
     setNewJob({ ...newJob, [e.target.name]: e.target.value });
   };
 
+  const handleCitySelect = (city) => {
+    setNewJob({ ...newJob, kota: city });
+    setShowCityDropdown(false);
+  };
+
   const handleAddJob = async () => {
     if (Object.values(newJob).some((val) => !val)) {
       toast.warn("Harap isi semua bidang!");
@@ -116,7 +151,7 @@ function Dashboard() {
       });
 
       if (response.ok) {
-        fetchJobs(); // Refresh daftar pekerjaan
+        fetchJobs();
         setShowJobForm(false);
         setNewJob({
           pekerjaan: "",
@@ -124,6 +159,7 @@ function Dashboard() {
           alamat: "",
           harga: "",
           noWa: "",
+          kota: "",
         });
         toast.success("Pekerjaan berhasil ditambahkan! 🎉");
       } else {
@@ -180,11 +216,11 @@ function Dashboard() {
             </Link>
           </li>
           <li>
-            <Link to="/dashboard/profile">
+            <Link to="/dashboard/customerService">
               <i>
                 <FontAwesomeIcon icon={faUser} className="icon" />
               </i>{" "}
-              Profil
+              Customer Service
             </Link>
           </li>
 
@@ -206,12 +242,14 @@ function Dashboard() {
                   alignItems: "center",
                 }}
               >
-                <div className="image-profile-sb">
-                  <img
-                    src={profile.url || user}
-                    alt="profile"
-                    className="profile-image-sb"
-                  />
+                <div className="image-profile-sb ">
+                  <Link to="/dashboard/profile">
+                    <img
+                      src={profile.url || user}
+                      alt="profile"
+                      className="profile-image-sb"
+                    />
+                  </Link>
                 </div>
                 <div>
                   <p className="p-logout-name">{name}</p>
@@ -260,6 +298,37 @@ function Dashboard() {
                 value={newJob.deskripsi}
                 maxLength={250}
               />
+              
+              {/* City Dropdown */}
+              <div className="city-dropdown-container">
+                <button
+                  className="city-dropdown-button-buat"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setShowCityDropdown(!showCityDropdown);
+                  }}
+                >
+                  {newJob.kota || "Pilih Kota"}
+                  <FontAwesomeIcon icon={faChevronDown} className="icon" />
+                </button>
+                {showCityDropdown && (
+                  <div className="city-dropdown">
+                    {cities.map((city) => (
+                      <div
+                        key={city}
+                        className="city-dropdown-item"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          handleCitySelect(city);
+                        }}
+                      >
+                        {city}
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+
               <input
                 type="text"
                 name="alamat"
@@ -301,6 +370,7 @@ function Dashboard() {
           <Route path="/" element={<JobList />} />
           <Route path="joblist" element={<JobUser />} />
           <Route path="profile" element={<Profil />} />
+          <Route path="customerService" element={<Ulasan />} />
         </Routes>
       </div>
     </div>
