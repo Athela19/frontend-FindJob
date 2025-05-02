@@ -332,7 +332,7 @@ function Dashboard() {
               <input
                 type="text"
                 name="alamat"
-                placeholder="Alamat"
+                placeholder="Detail Alamat"
                 onChange={handleInputChange}
                 value={newJob.alamat}
                 maxLength={30}

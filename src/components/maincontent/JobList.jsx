@@ -152,7 +152,7 @@ const JobList = () => {
               <div className="search-container">
                 <input
                   type="text"
-                  placeholder="Cari Disini..."
+                  placeholder="Cari Pekerjaan..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                 />
@@ -161,7 +161,7 @@ const JobList = () => {
                     className="city-dropdown-button"
                     onClick={() => setShowCityDropdown(!showCityDropdown)}
                   >
-                    {selectedCity || "Pilih Kota"} 
+                    {selectedCity || "Semua Kota"} 
                     <FontAwesomeIcon icon={faChevronDown} className="icon" />
                   </button>
                   {showCityDropdown && (
@@ -235,8 +235,7 @@ const JobList = () => {
                           className="icon"
                         />
                       </i>
-                    </strong>{" "}
-                    {job.alamat}
+                    </strong>{" "} {job.kota}, {job.alamat}
                   </p>
                   <p className="isi-job">
                     <strong>
@@ -351,7 +350,7 @@ const JobList = () => {
                     <i>
                       <FontAwesomeIcon icon={faMapLocation} className="icon" />
                     </i>{" "}
-                    Lokasi : {selectedJob.alamat}
+                    Lokasi : {selectedJob.kota}, {selectedJob.alamat}
                   </p>
                   <p>
                     <i>
