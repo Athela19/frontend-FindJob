@@ -185,22 +185,9 @@ function Profile() {
           <label>Password (Opsional)</label>
           <input type="password" name="password" className="form-input" value={formData.password} onChange={handleChange} />
         </div>
-        <button type="submit" className="update-button">Update Profile</button>
-      </form>
 
-      {/* Form untuk mengirim komentar */}
-      <form onSubmit={handleCommentSubmit} className="comment-form">
-        <div className="form-group">
-          <label>Komentar</label>
-          <textarea
-            name="comment"
-            className="form-input"
-            value={comment}
-            onChange={handleCommentChange}
-            placeholder="Masukkan komentar Anda"
-          />
-        </div>
-        <button type="submit" className="comment-button">Kirim Komentar</button>
+        
+        <button type="submit" className="update-button">Update Profile</button>
       </form>
     </div>
   );
