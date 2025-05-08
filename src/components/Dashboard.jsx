@@ -8,22 +8,15 @@ import {
   faChevronLeft,
   faChevronRight,
   faSignOutAlt,
-<<<<<<< HEAD
   faStar,
-=======
   faChevronDown,
->>>>>>> d1eaa634f9fe02b53227986b727d1a0c02aeccf3
 } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import "../css/dashboard.css";
 import JobList from "./maincontent/JobList";
 import JobUser from "./maincontent/JobUser";
 import Profil from "./maincontent/Profil";
-<<<<<<< HEAD
-import Ulasan from "./maincontent/Ulasan"
-=======
 import Ulasan from "./maincontent/Ulasan";
->>>>>>> d1eaa634f9fe02b53227986b727d1a0c02aeccf3
 import { toast } from "react-toastify";
 import user from "../img/user.png";
 import Navbar from "./subcomponent/Navbar";
@@ -386,11 +379,7 @@ function Dashboard() {
           <Route path="/" element={<JobList />} />
           <Route path="joblist" element={<JobUser />} />
           <Route path="profile" element={<Profil />} />
-<<<<<<< HEAD
           <Route path="ulasan" element={<Ulasan />} />
-=======
-          <Route path="customerService" element={<Ulasan />} />
->>>>>>> d1eaa634f9fe02b53227986b727d1a0c02aeccf3
         </Routes>
       </div>
     </div>
