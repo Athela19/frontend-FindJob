@@ -8,6 +8,7 @@ import {
   faChevronLeft,
   faChevronRight,
   faSignOutAlt,
+  faStar,
   faChevronDown,
 } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
@@ -223,6 +224,14 @@ function Dashboard() {
               Customer Service
             </Link>
           </li>
+          <li>
+            <Link to="/dashboard/ulasan">
+              <i>
+                <FontAwesomeIcon icon={faStar} className="icon" />
+              </i>{" "}
+              Layanan Pengguna
+            </Link>
+          </li>
 
           {/* Tombol Logout */}
           <div className="logout-button-db">
@@ -370,7 +379,7 @@ function Dashboard() {
           <Route path="/" element={<JobList />} />
           <Route path="joblist" element={<JobUser />} />
           <Route path="profile" element={<Profil />} />
-          <Route path="customerService" element={<Ulasan />} />
+          <Route path="ulasan" element={<Ulasan />} />
         </Routes>
       </div>
     </div>
