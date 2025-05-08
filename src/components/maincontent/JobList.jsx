@@ -10,6 +10,7 @@ import {
   faUser,
   faChevronLeft,
   faChevronRight,
+  faChevronDown,
 } from "@fortawesome/free-solid-svg-icons";
 import denied from "../../img/denied.svg";
 import user from "../../img/user.png";
@@ -25,10 +26,36 @@ const JobList = () => {
   const [jobs, setJobs] = useState([]);
   const [profiles, setProfiles] = useState({});
   const [searchQuery, setSearchQuery] = useState("");
+  const [selectedCity, setSelectedCity] = useState("");
+  const [showCityDropdown, setShowCityDropdown] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(15);
   const [selectedJob, setSelectedJob] = useState(null);
   const navigate = useNavigate();
+
+  // List of Indonesian cities
+  const cities = [
+    "Semua Kota",
+    "Jakarta",
+    "Surabaya",
+    "Bandung",
+    "Medan",
+    "Semarang",
+    "Makassar",
+    "Palembang",
+    "Depok",
+    "Tangerang",
+    "Bekasi",
+    "Bogor",
+    "Malang",
+    "Yogyakarta",
+    "Denpasar",
+    "Balikpapan",
+    "Pekanbaru",
+    "Padang",
+    "Bandar Lampung",
+    "Banjarmasin",
+  ];
 
   useEffect(() => {
     const fetchData = async () => {
@@ -84,11 +111,18 @@ const JobList = () => {
     setProfiles(profileData);
   };
 
-  const filteredJobs = jobs.filter(
-    (job) =>
+  const filteredJobs = jobs.filter((job) => {
+    const matchesSearch = 
       job.pekerjaan.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      job.deskripsi.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+      job.deskripsi.toLowerCase().includes(searchQuery.toLowerCase());
+    
+    const matchesCity = 
+      selectedCity === "" || 
+      selectedCity === "Semua Kota" ||
+      job.kota.toLowerCase().includes(selectedCity.toLowerCase());
+    
+    return matchesSearch && matchesCity;
+  });
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -115,12 +149,39 @@ const JobList = () => {
           <p>Find your job based on your choice, with us.</p>
           <div className="navbar-search-db">
             {window.location.pathname !== "/dashboard/saya" && (
-              <input
-                type="text"
-                placeholder="Cari Disini..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-              />
+              <div className="search-container">
+                <input
+                  type="text"
+                  placeholder="Cari Pekerjaan..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                />
+                <div className="city-dropdown-container">
+                  <button 
+                    className="city-dropdown-button"
+                    onClick={() => setShowCityDropdown(!showCityDropdown)}
+                  >
+                    {selectedCity || "Semua Kota"} 
+                    <FontAwesomeIcon icon={faChevronDown} className="icon" />
+                  </button>
+                  {showCityDropdown && (
+                    <div className="city-dropdown">
+                      {cities.map((city) => (
+                        <div
+                          key={city}
+                          className="city-dropdown-item"
+                          onClick={() => {
+                            setSelectedCity(city === "Semua Kota" ? "" : city);
+                            setShowCityDropdown(false);
+                          }}
+                        >
+                          {city}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </div>
             )}
           </div>
         </div>
@@ -174,8 +235,7 @@ const JobList = () => {
                           className="icon"
                         />
                       </i>
-                    </strong>{" "}
-                    {job.alamat}
+                    </strong>{" "} {job.kota}, {job.alamat}
                   </p>
                   <p className="isi-job">
                     <strong>
@@ -235,7 +295,6 @@ const JobList = () => {
           </div>
         </div>
       )}
-      {/* Footer */}
       <Footer />
 
       {selectedJob && (
@@ -275,7 +334,7 @@ const JobList = () => {
                 </div>
                 <div className="detail-page2">
                   <a
-                    href={`https://wa.me/${selectedJob.noWa}`} // Perbaikan di sini
+                    href={`https://wa.me/${selectedJob.noWa}`}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -291,7 +350,7 @@ const JobList = () => {
                     <i>
                       <FontAwesomeIcon icon={faMapLocation} className="icon" />
                     </i>{" "}
-                    Lokasi : {selectedJob.alamat}
+                    Lokasi : {selectedJob.kota}, {selectedJob.alamat}
                   </p>
                   <p>
                     <i>
@@ -326,4 +385,5 @@ const JobList = () => {
     </div>
   );
 };
+
 export default JobList;

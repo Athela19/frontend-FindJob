@@ -125,18 +125,124 @@
 
 .navbar-search-db input {
   padding: 0.5rem;
-  padding-right: 16rem;
-  padding-left: 10px;
+  padding-right: 7rem;
+  padding-left: 7px;
   border-radius: 50px;
-  border: 1px solid ;
   border: 1px solid lightgrey;
   margin-top: 1rem;
-}
-.navbar-search-db input:focus {
-  border: 1px solid blue;
-  box-shadow: 0 0 5px 2px solid lightgrey;
+  width: 100%;
 }
 
+.navbar-search-db input:focus {
+  border: 1px solid blue;
+  box-shadow: 0 0 5px lightgrey;
+}
+
+.search-container {
+  display: flex;
+  width: 100%;
+  gap: 10px;
+  align-items: center;
+}
+
+.city-dropdown-container {
+  position: relative;
+  width: 100%;
+}
+
+.city-dropdown-button {
+  padding: 0.5rem;
+  padding-left: 7px;
+  padding-right: 2rem;
+  border-radius: 50px;
+  border: 1px solid lightgrey;
+  margin-top: 1rem;
+  width: 100%;
+  background: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+.city-dropdown-button:focus {
+  border: 1px solid blue;
+  box-shadow: 0 0 5px lightgrey;
+}
+.city-dropdown-button-buat {
+  padding: 0.7rem;
+  padding-left: 0.7rem;
+  padding-right: 0.7rem;
+  border-radius: 0.3rem;
+  border: 1px solid lightgrey;
+  width: 100%;
+  background: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  margin:0.7rem 0;
+}
+
+.city-dropdown {
+  position: absolute;
+  top: 100%; /* Dropdown appears below */
+  left: 0;
+  width: 100%;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  max-height: 72px; /* Height for exactly 2 items (36px each) */
+  overflow-y: auto;
+  z-index: 100;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  margin-top: 5px;
+}
+
+.city-dropdown-item {
+  padding: 8px 15px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  height: 1.7rem; /* Fixed height for each item */
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  font-weight:500;
+
+}
+
+.city-dropdown-item:hover {
+  background-color: #f0f0f0;
+}
+
+/* Scrollbar styling */
+.city-dropdown::-webkit-scrollbar {
+  width: 6px;
+}
+
+.city-dropdown::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+.city-dropdown::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 3px;
+}
+
+.city-dropdown::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Add arrow icon styling */
+.city-dropdown-button .icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
 .navbar-user-db {
   display: flex;
 }
@@ -328,12 +434,21 @@
 
 .p-logout-name {
   margin-top: 0;
+  margin-bottom: 3px;
   color: #555;
   font-weight: bold;
   text-transform: capitalize;
-  font-size: 1rem;
-  margin-bottom: 3px;
+  font-size: clamp(0.8rem, 1vw + 0.2rem, 1rem); /* Ukuran font responsif */
+  line-height: 1.2;
+  max-height: 2.4em; /* 2 baris x 1.2 line-height */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* Maksimal 2 baris */
+  -webkit-box-orient: vertical;
+  word-break: break-word;
 }
+
 .p-logout-email {
   margin-top: 0;
   color: grey;

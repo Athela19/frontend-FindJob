@@ -31,6 +31,7 @@ function Navbar({ setShowJobForm }) {
             <li><a href="#home">Beranda</a></li>
             <li><a href="#about">Tentang kami</a></li>
             <li><a href="#creator">Pengembang</a></li>
+            <li><a href="#ulasan">Ulasan</a></li>
           </ul>
         </div>
       ) : (

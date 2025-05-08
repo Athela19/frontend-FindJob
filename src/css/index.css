@@ -363,6 +363,7 @@ body {
 .komentar-title {
   font-size: 2.6rem;
   margin-bottom: 3rem;
+  padding-top: 5rem;
 }
 
 .loading-text,
@@ -443,3 +444,4 @@ body {
   max-height: 150px; /* Batasi tinggi agar tidak terlalu panjang */
   white-space: pre-line; 
 }
+
