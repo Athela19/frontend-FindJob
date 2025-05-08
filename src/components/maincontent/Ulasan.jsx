@@ -44,7 +44,7 @@ function Ulasan() {
         "http://localhost:5000/comments",
         {
           komentar: comment,
-          rating: parseInt(rating), // ✅ Pastikan rating dikirim sebagai int
+          rating: parseInt(rating),
         },
         {
           headers: { Authorization: `Bearer ${token}` },
@@ -58,46 +58,77 @@ function Ulasan() {
     }
   };
 
+  const addShortcut = (text) => {
+    setComment((prev) => (prev ? `${prev} ${text}` : text));
+  };
+
   return (
-    <div className="profile-container">
+    <div className="ulasan-container" style={{
+      maxWidth: "900px",
+      margin: "auto",
+      padding: "20px",
+      background: "#fff",
+      borderRadius: "12px",
+      boxShadow: "0 2px 10px rgba(0,0,0,0.1)"
+    }}>
       <h2 className="profile-title">Ulasan Pengguna</h2>
 
       <form onSubmit={handleCommentSubmit} className="comment-form">
         <div className="form-group">
-          <br />
           <label>Kritik dan Saran</label>
           <textarea
             name="comment"
             className="form-input"
             value={comment}
             onChange={handleCommentChange}
-            placeholder="Masukkan kritik dan saran"
-            style={{ height: "150px", resize: "none" }} // ✅ Ukuran tetap
+            style={{
+              height: "150px",
+              resize: "none",
+              width: "100%",
+              padding: "10px",
+              fontSize: "16px",
+              borderRadius: "8px",
+              border: "1px solid #ccc",
+              marginBottom: "10px",
+            }}
           />
 
-          <br />
-          <br />
+          <div className="ulasan-shortcut-container" style={{ marginBottom: "1rem" }}>
+            <label>Ulasan cepat:</label>
+
+            <div className="ulasan-shortcut-buttons" style={{ display: "flex", flexWrap: "wrap", gap: "1px" }}>
+              <button type="button" onClick={() => addShortcut("Pelayanan sangat memuaskan!")}>Pelayanan sangat memuaskan!</button>
+              <button type="button" onClick={() => addShortcut("Web mudah digunakan.")}>Web mudah digunakan.</button>
+              <button type="button" onClick={() => addShortcut("Sangat membantu dan profesional.")}>Sangat membantu dan profesional.</button>
+              <button type="button" onClick={() => addShortcut("Tampilan web sederhana.")}>Tampilan web sederhana.</button>
+              <button type="button" onClick={() => addShortcut("Fleksibel.")}>Fleksibel.</button>
+              <button type="button" onClick={() => addShortcut("Pelayanan cepat.")}>Pelayanan cepat.</button>
+            </div>
+          </div>
+
+        <b />
           <label>Beri Kami Nilai!</label>
-          <div className="flex gap-1 mt-2 mb-4">
+          <div className="flex gap-2 mt-2 mb-4" style={{ display: "flex", gap: "10px" }}>
             {[1, 2, 3, 4, 5].map((value) => {
               const isFilled = hovered ? value <= hovered : value <= rating;
               return (
                 <Star
                   key={value}
-                  size={30}
+                  size={28}
                   onClick={() => setRating(value)}
                   onMouseEnter={() => setHovered(value)}
                   onMouseLeave={() => setHovered(null)}
-                  className={`cursor-pointer transition-colors ${
-                    isFilled ? "text-yellow-400" : "text-gray-300"
-                  }`}
-                  fill={isFilled ? "#facc15" : "none"}
+                  className={isFilled ? "text-yellow-500" : "text-gray-300"}
+                  fill={isFilled ? "orange" : "none"}
+                  strokeWidth={1}
+                  style={{ cursor: "pointer" }}
                 />
               );
             })}
           </div>
         </div>
-
+        
+        <br/>
         <button type="submit" className="btn-db">
           Kirim Ulasan
         </button>

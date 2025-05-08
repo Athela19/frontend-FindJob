@@ -8,12 +8,14 @@ import {
   faChevronLeft,
   faChevronRight,
   faSignOutAlt,
+  faStar,
 } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import "../css/dashboard.css";
 import JobList from "./maincontent/JobList";
 import JobUser from "./maincontent/JobUser";
 import Profil from "./maincontent/Profil";
+import Ulasan from "./maincontent/Ulasan"
 import { toast } from "react-toastify";
 import user from "../img/user.png";
 import Navbar from "./subcomponent/Navbar";
@@ -187,6 +189,14 @@ function Dashboard() {
               Profil
             </Link>
           </li>
+          <li>
+            <Link to="/dashboard/ulasan">
+              <i>
+                <FontAwesomeIcon icon={faStar} className="icon" />
+              </i>{" "}
+              Layanan Pengguna
+            </Link>
+          </li>
 
           {/* Tombol Logout */}
           <div className="logout-button-db">
@@ -301,6 +311,7 @@ function Dashboard() {
           <Route path="/" element={<JobList />} />
           <Route path="joblist" element={<JobUser />} />
           <Route path="profile" element={<Profil />} />
+          <Route path="ulasan" element={<Ulasan />} />
         </Routes>
       </div>
     </div>

@@ -275,6 +275,24 @@
   transform: translateX(0);
 }
 
+.ulasan-shortcut-container {
+  margin-top: 1rem;
+}
+
+.ulasan-shortcut-buttons button {
+  margin: 0.3rem;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background-color: #f5f5f5;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.ulasan-shortcut-buttons button:hover {
+  background-color: #e0e0e0;
+}
+
 
 
 .logout-container {
